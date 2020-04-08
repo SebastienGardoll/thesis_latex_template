@@ -1,0 +1,71 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Author: Sébastien Gardoll copyright all rights reserved %
+% email: sebastien@gardoll.fr                             %
+% LaTeX Project Public License 1.3c                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+
+% Help to rotate caption and figure at the same time.
+\usepackage{rotating}
+
+\usepackage{float}
+\RequirePackage{caption}
+\DeclareCaptionLabelSeparator{mysep}{~:~}
+\captionsetup{singlelinecheck=no,labelsep=mysep,font=small, justification=centering}
+\setlength{\abovecaptionskip}{5pt}
+\setlength{\belowcaptionskip}{-5pt}
+
+% \includeimg{position}{Scale}{fileName}{caption}
+\newcommand{\includeimgfull}[4]
+{
+  \begin{figure}[#1]
+    \begin{center}
+       \includegraphics[width=#2\textwidth, keepaspectratio=true]{#3}
+    \end{center}
+    \caption{\label{fig:#3} #4}
+  \end{figure}
+}
+
+% \includeimgNotRef{Scale}{fileName}{caption}
+\newcommand{\includeimgNotRef}[3]
+{
+  \begin{figure}[htbp]
+    \begin{center}
+       \includegraphics[width=#1\textwidth, keepaspectratio=true]{#2}
+    \end{center}
+    \caption*{#3}
+  \end{figure}
+}
+
+% \includeimg{Scale}{fileName}{caption}
+\newcommand{\includeimg}[3]
+{
+   \includeimgfull{htbp}{#1}{#2}{#3}
+}
+
+% \includeimgrot{position}{Angle}{Scale}{fileName}{caption}
+\newcommand{\includeimgrot}[5]
+{
+  \begin{figure}[#1]
+    \begin{center}
+       \includegraphics[angle=#2,width=#3\textwidth, keepaspectratio=true]{#4}
+    \end{center}
+    \caption{\label{fig:#4} #5}
+  \end{figure}
+}
+
+\newcommand{\includeimgsideways}[3]
+{
+  \begin{sidewaysfigure}
+    \begin{center}
+       \includegraphics[width=#1\textwidth, keepaspectratio=true]{#2}
+       \caption{\label{fig:#2} #3}
+    \end{center}
+  \end{sidewaysfigure}
+}
+
+% centered page environment
+\usepackage{fancyhdr}
+\newenvironment{vcenterpage}
+{\newpage\vspace*{\fill}\thispagestyle{plain}\renewcommand{\headrulewidth}{0pt}}
+{\vspace*{\fill}}

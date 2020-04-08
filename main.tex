@@ -1,0 +1,77 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Author: Sébastien Gardoll copyright all rights reserved %
+% email: sebastien@gardoll.fr                             %
+% LaTeX Project Public License 1.3c                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{format} % Configure the version of document: WEB or PAPER.
+
+\include{functions}
+
+\include{hyphenations}
+
+% Define a directory of resources (containing the pictures, etc.).
+\graphicspath{{.}{resources/}}
+
+% Add annotations in the pdf file.
+\hypersetup
+{
+bookmarksopen=true,
+pdftitle="pdf title",
+pdfauthor="author name",
+pdfsubject="subject of the document",
+%pdftoolbar=false,
+pdfmenubar=true,
+pdfhighlight=/O,
+colorlinks=true,
+pdfpagemode=None,
+pdfpagelayout=SinglePage,
+pdffitwindow=true,
+%linkcolor=linkcol,
+%citecolor=citecol,
+%urlcolor=linkcol
+}
+
+% Base file for bibliographic references.
+\addbibresource{xampl.bib}
+
+\begin{document}
+
+% Remove page numbering.
+\pagenumbering{gobble}
+
+\include{title_page}
+
+\frontmatter % Set page numbering to roman style until \mainmatter is met.
+
+\include{acknowledgements_page}
+
+\dominitoc
+
+\tableofcontents
+
+\mainmatter % Set page numbering to arabic style.
+
+\include{unnumbered_chapter}
+
+\include{chapter_1}
+
+\include{chapter_2}
+
+\appendix % Set chapter numbering to alphabetic style.
+\include{annex_page}
+
+% Include your annex pages here.
+
+\backmatter
+
+\printbibliography[heading=bibintoc]
+
+\listoffigures
+\addcontentsline{toc}{chapter}{Table des figures}
+
+\listoftables
+\addcontentsline{toc}{chapter}{Liste des tableaux}
+
+% \end{document} is include in sum.tex so as to skip an empty page
+% at the end of the document.
+\include{sum}

@@ -1,0 +1,306 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Author: Sébastien Gardoll copyright all rights reserved %
+% email: sebastien@gardoll.fr                             %
+% LaTeX Project Public License 1.3c                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% option draft - debug mode - (faster compilation time).
+% option oneside: for web publication.
+% option twoside: for paper publication.
+% option openright: the chapters begin at the right.
+% option final : printer grade.
+
+%%% EXAMPLE OF WEB PUBLICATION %%%
+%\documentclass[french,a4paper,12pt,twoside,final]{book}
+
+%%% EXAMPLE OF PAPER PUBLICATION %%%
+\documentclass[french,a4paper,12pt,openright,twoside,final]{book}
+
+% See section hyperlink to continue with WEB or PAPER settings.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FONTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% XeLateX / LuaLateX font selection package.
+\usepackage{fontspec}
+
+% Document font.
+\setmainfont{Liberation Serif}
+
+% Localisation.
+% french referes to frenchb ; frenchb and francais are deprecated.
+% babel fully supportes LuaLateX ; polyglossia doesn't fully support LuaLateX.
+\usepackage[french]{babel}
+
+% None breakable spaces for the french quote symboles.
+\frenchbsetup{og=«, fg=»}
+
+% Micro-typographical adjustments.
+\usepackage{microtype}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MATHS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Maths symboles.
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{unicode-math} % needed for \setmathfont
+% Use this font instead of the default font (latin modern) for math.
+\setmathfont{Libertinus Math}
+\theoremstyle{plain}
+\newtheorem{theo}{Théorème}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Make \section to be a barrier for the floating objects:
+% sections define scope for the placement of floating objects.
+\usepackage[section]{placeins}
+
+% Sideways of figures & tables.
+\usepackage{verbatim}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% COLORS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Define colors.
+\usepackage{color}
+%\definecolor{mygray}{gray}{0} % 0 for black ; 1 for white.
+%\definecolor{linkcol}{rgb}{0,0,0.4}
+%\definecolor{citecol}{rgb}{0.5,0,0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HYPERLINK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Hyper reference configuration %%%
+
+%%% WEB VERSION %%%
+\usepackage[colorlinks = true, allcolors = blue]{hyperref}
+
+%%% PAPER VERSION %%%
+%\usepackage[colorlinks = true, allcolors = black]{hyperref}
+
+\urlstyle{rm} % Remove the URL special font and use the document font.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PARAGRAPHS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Paragraph indentation.
+\setlength{\parindent}{1em}
+
+% Space between paragraphs. Warning, page end will not be consistant.
+% If you wish some space between paragraphs, reimplement this template with
+% the document class memoir (a lot of work) and add the \nonzeroparskip
+% so as to get consistant page ends.
+%\setlength{\parskip}{8pt}
+
+% This command modify the outlook the document.
+% Using these command leads to modify the spacing of the headers below
+% see (\titlespacing) in the section template.
+%\renewcommand{\baselinestretch}{1.05} % inter line space factor.
+
+% Manage the widows and orphans by streching the space between lines of the
+% faulty paragraph. Warning, this instruction can lead to greater or lower
+% paragraph spacing. Call \nowidow[n] at the end of the faulty paragraph,
+% with n as the minimal number of lines.
+\usepackage{nowidow}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MARGINS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Document settings %%%
+\usepackage{geometry} % Set a default text scale according to the page.
+
+% Page geometry configuration.
+\geometry{left=30mm,right=30mm,top=30mm,bottom=30mm} % Document margins.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LISTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Listes %%%
+
+% Cancel french setup for list and enable english style for list (bullet list).
+\frenchbsetup{StandardLists=true}
+
+% Enable list fine tuning.
+\usepackage{enumitem}
+
+% list configuration keys:
+% - leftmargin : bullet margin
+% - labelsep   : space after bullet
+% - itemsep    : item vertical spacing
+%\setlist[itemize]{leftmargin=12pt, labelsep=3pt, itemsep=0pt}
+%\setlist[enumerate]{leftmargin=16pt, labelsep=3pt, itemsep=0pt}
+\setlist{nosep} % Delete the vectical spacing.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[backend=biber,style=numeric]{biblatex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Tables on several pages - page anotations.
+%\RequirePackage{supertabular}
+\RequirePackage{longtable}
+
+% Ctable style.
+\usepackage{ctable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OTHERS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Glossary / list of abbreviations.
+\usepackage[intoc]{nomencl}
+\renewcommand{\nomname}{Liste des Abréviations}
+
+% Dummy text package.
+\usepackage{lipsum}
+
+% Logos, text superscript, subscript
+% and importation of glyph from other fonts.
+\ifluatex
+  \usepackage{luatextra}
+  \newcommand{\engineLogo}{\LuaLaTeX}
+\fi
+
+\ifxetex
+  \usepackage{xltxtra}
+  \newcommand{\engineLogo}{\XeLaTeX}
+\fi
+
+% Arithemics with latex.
+\usepackage{calc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TOC %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Table of content for the document and for each chapter.
+\usepackage[french]{minitoc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PAGE  TEMPLATE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%  TOC
+
+% [titles] keeps the fancy header style.
+\usepackage[titles]{tocloft}
+
+% Configure the spacing in the TOC.
+\cftsetindents{section}{0cm}{1cm}
+\cftsetindents{subsection}{5pt}{1cm}
+\cftsetindents{subsubsection}{10pt}{1cm}
+
+\setcounter{tocdepth}{2} % 2 <=> Display only chapters and sections in the TOC.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% header and footer
+
+\usepackage{fancyhdr}
+
+% Clear the previous configurations of footer and header.
+\fancyhf{}
+
+%\renewcommand{\sectionmark}[1]{\markright{#1}}
+
+\makeatletter
+\if@twoside
+\makeatother
+
+%%% Header for two sided documents:
+
+% Page number in left on even, right on odd pages.
+\fancyfoot[LE,RO]{\thepage}
+% Chapter in the right on even pages.
+\fancyhead[LE]{\nouppercase{\leftmark}}
+% Section in the left on odd pages.
+\fancyhead[RO]{\nouppercase{\rightmark}}
+
+\else
+%%% Header for one sided documents:
+
+% Page number in the middle of the page.
+\fancyfoot[C]{\thepage}
+\rhead{\nouppercase{\leftmark}} % Print the only chapter at the right.
+
+\fi
+
+% Define a plain style for pages that are not from a chapter.
+\fancypagestyle{plain}
+{
+  \fancyhead{}
+  \renewcommand{\headrulewidth}{0pt} % This remove the header rule.
+}
+
+% Clear header style on the last empty odd pages (if the document is twosided).
+% This make the first page of chapters to start on even pages.
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else%
+  \hbox{}%
+  % Empty header styles
+  \thispagestyle{plain}
+  \fancyfoot[LE,RO]{\thepage}
+  \newpage%
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+% Enable the fancy header and foot page.
+
+\pagestyle{fancy}
+
+% Reconfigure the style of the chapter and section number.
+% Always add these instructions after \pagestyle{fancy}.
+\renewcommand{\sectionmark}[1]{\markright{\thesection~~#1}}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername~\thechapter.~#1}{}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Chapitre, section, etc.
+
+\setcounter{secnumdepth}{4} % 4 <=> numbered chapter to subsubsection.
+
+% Easy configuration of chapter, section, etc.
+\usepackage{titlesec}
+
+\usepackage{etoolbox}
+
+% Solve the titlesec lost of section, subsection, etc. numbering lost.
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
+
+% Spacing
+% \titlespacing{<command>}{<left>}{<before>}{<after>}[<right>]
+% Add * so as to delete the indentation.
+\titlespacing*{\chapter}{0mm}{50mm}{18mm}[0mm]
+\titlespacing*{\section}{0mm}{2mm}{5mm}[0mm]
+\titlespacing*{\subsection}{0mm}{2mm}{0mm}[0mm]
+\titlespacing*{\subsubsection}{0mm}{2mm}{0mm}[0mm]
+\titlespacing*{\paragraph}{0mm}{0mm}{0mm}[0mm]
+\titlespacing*{\subparagraph}{0mm}{0mm}{0mm}[0mm]
+
+%%%%%%%%%%% Numbered chapter
+\titleformat{\chapter}[display]
+{\filleft\huge\bfseries} % Chapter title format
+{\makebox[\linewidth][r]{\raisebox{103pt}[0pt][0pt]{\textcolor{gray!50}{\fontsize{80pt}{80pt}\selectfont\thechapter}}}} % Chapter title number.
+{-40mm} %sep
+{}  %before-code
+[\vspace{0.5cm}\titlerule]
+
+%%%%%%%%%%% Unumbered chapter
+
+\titleformat{name=\chapter,numberless}[display]
+{\filleft\huge\bfseries} % Chapter title format
+{\makebox[10pt][l]{\raisebox{10pt}[0pt][0pt]{\textcolor{gray!50}{\fontsize{10pt}{12pt}\selectfont}}}} % Chapter title number(not displayed).
+{-30mm}   %sep
+{}  %before-code
+[\vspace{0.5cm}\titlerule]
+
+%%%%%%%%%%%% Section, subsection, etc.
+
+% The makebok command so as to align headers.
+% The variable headerspacing is tightly related to the format of the headers.
+\newlength{\headerspacing}
+\setlength{\headerspacing}{40pt}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\makebox[\headerspacing][l]{\thesection}}{0pt}{}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\makebox[\headerspacing][l]{\thesubsection}}{0pt}{}
+
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}{\makebox[\headerspacing][l]{\thesubsubsection}}{0pt}{}
+
+% Redefines the numbering style. Can't do it with titleformat command because
+% the TOC doesn't display the right number style.
+% This is the default numbering style.
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}

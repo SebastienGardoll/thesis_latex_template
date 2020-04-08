@@ -1,0 +1,102 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Author: Sébastien Gardoll copyright all rights reserved %
+% email: sebastien@gardoll.fr                             %
+% LaTeX Project Public License 1.3c                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Title of the chapter}
+\label{chap:title_of_the_chapter}
+Some preambule.
+
+\section{Text emphasis}
+
+\textbf{bold text}
+\textit{italicied text}
+\underline{underlined text}
+\emph{emphasising text}
+
+\section{Itemize example}
+
+\begin{itemize}
+\item {Item1: \lipsum[1]}
+\item {Item2}
+\item {Item3}
+\end{itemize}
+\begin{itemize}
+\item {carriaged return item:}
+\end{itemize}
+\lipsum[1]
+
+\section{Section}
+
+\lipsum[1]
+\lipsum[2]
+
+\subsection{Subsection}
+
+\lipsum[1]
+
+\subsubsection{Subsubsection}
+
+\lipsum[1-2]
+
+\section{Image inclusions}
+
+\ref{fig:pic1.png} is an example of a full width page inclusion
+of a picture (aspect ratio is kept):
+
+\includeimg{1}{pic1.png}{The caption of the picture.}
+
+\ref{fig:pic2.png} is an example of a scaled down picture:
+
+\includeimg{0.5}{pic2.png}{The caption of the picture.}
+
+\ref{fig:pic3.png} is an example of a rotated picture:
+
+\includeimgsideways{0.5}{pic3.png}{The rotated caption of the picture.}
+
+\section{Citations}
+
+According to \cite{inbook-full}...
+This is a footnote citation\footfullcite{incollection-minimal}.
+
+\section{Some fancy maths}
+
+\[\textit{MSE}=E(Y-\hat{Y})^2=\underbrace{\left[F(X)-\hat{F}(X)\right]^2}_{\text{reductible}} + \underbrace{\textit{Var}(\varepsilon)}_{\text{irréductible}}\]
+
+\[d=\left\{
+        \begin{array}{l}
+        1\ si\ A>\alpha \\
+        0\ si\ A\leqslant\alpha
+        \end{array}
+        \right.
+      \]
+
+\[d(x_1,\ x_2)=\sqrt{\ \sum_{j=1}^n\frac{1}{f_n}(f_{1j}-f_{2j})^2}\]
+
+\begin{theo}[Morgan's Law]
+\[\overline{P \wedge Q} \Leftrightarrow \bar{P} \vee \bar{Q}\]
+\[\overline{P \vee Q} \Leftrightarrow \bar{P} \wedge \bar{Q}\]
+\end{theo}
+
+\section{Tables}
+
+From the CTABLE man (link \href{https://ctan.org/pkg/ctable}{here}):
+
+\ctable[
+cap     = The Skewing Angles,
+caption = The Skewing Angles ($\beta$) for
+$\fam0 Mu(H)+X_2$ and $\fam0 Mu(H)+HX$~\tmark,
+label   = nowidth,
+pos     = h
+]{rlcc}{
+\tnote{for the abstraction reaction,
+$\fam0 Mu+HX \rightarrow MuH+X$.}
+\tnote[b]{1 degree${} = \pi/180$ radians.}
+\tnote[c]{this is a particularly long note, showing that
+footnotes are set in raggedright mode as we don’t like
+hyphenation in table footnotes.}
+}{                                                          \FL
+&            & $\fam0 H(Mu)+F_2$     & $\fam0 H(Mu)+Cl_2$ \ML
+&$\beta$(H)  & $80.9^\circ$\tmark[b] & $83.2^\circ$       \NN
+&$\beta$(Mu) & $86.7^\circ$          & $87.7^\circ$       \LL
+}
